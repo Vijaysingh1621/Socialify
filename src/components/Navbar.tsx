@@ -14,9 +14,9 @@ const Navbar = () => {
         <Link href="/" className='font-bold text-[25px] text-blue-600'>Socialify</Link>
       </div>
       {/*center*/}
-      <div className='hidden md:flex w-[50%] text-sm items-center justify-between'>
+      <div className='hidden md:flex w-[50%] text-sm items-center justify-between '>
         {/* Links*/}
-        <div className='flex gap-6 text-gray-600'>
+        <div className='flex gap-6 text-gray-600 mr-5'>
           <Link href="/" className='flex items-center gap-2'>
             <Image src="/home.png" alt="homepage" width={16} height={16} className="w-4 h-4" />
             <span>Homepage</span>          
@@ -32,7 +32,7 @@ const Navbar = () => {
         </div>
         <div className='hidden xl:flex p-2 bg-slate-100 items-center rounded-xl '>
           <input type="Text" placeholder='search...' className='bg-transparent outline-none'/>
-          <Image src="/search.png" alt="" height={14} width={14}/>
+          <Image src="/search.png" alt="" height={14} width={14} className='mr-4'/>
          </div>
       </div>
       {/*right*/}
