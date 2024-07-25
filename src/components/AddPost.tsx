@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import { color } from 'framer-motion'
+
 
 const AddPost = () => {
   return (
