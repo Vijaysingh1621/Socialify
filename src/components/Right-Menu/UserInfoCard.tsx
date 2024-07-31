@@ -51,7 +51,7 @@ const UserInfoCard = async({user}:{user?:User}) => {
             <span className='text-gray-500'>
                 User Information
             </span>
-            {currentUserId===user?.id?(<UpdateUser/>):( <Link href="/" className='text-blue-500 text-xs'>See all</Link>)}
+            {currentUserId===user?.clerkId?(<UpdateUser user={user}/>):( <Link href="/" className='text-blue-500 text-xs'>See all</Link>)}
            
         </div>
         {/*Bottom*/}
@@ -83,7 +83,7 @@ const UserInfoCard = async({user}:{user?:User}) => {
             { user?.website && 
                 <div className='flex gap-1 items-center '>
                     <Image src="/link.png" alt="" width={16} height={16}/>
-                    <Link href="https://prabalverma.me" className='text-blue-500 font-medium '>{user.website}</Link>
+                    <Link href={`https://${user.website}`} target="_blank" className='text-blue-500 font-medium '>{user.website}</Link>
                 </div>}
                 <div className='flex gap-1 items-center text-[13px] '>
                     <Image src="/date.png" alt="" width={16} height={16}/>

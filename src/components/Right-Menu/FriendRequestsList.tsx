@@ -1,17 +1,41 @@
+"use client"
 import React from 'react'
 import Image from 'next/image'
 import { FollowRequest, User } from '@prisma/client'
+import { useOptimistic, useState } from "react";
+import { acceptFollowRequest, declineFollowRequest } from "@/lib/actions";
 
 
 type RequestWithUser = FollowRequest & {sender:User};
 const FriendRequestsList = ({requests}:{requests:RequestWithUser[]}) => {
-  console.log('requests:', requests);
+  //console.log('requests:', requests);
 
+  const [requestState, setRequestState] = useState(requests);
+
+  const accept = async (requestId: number, userId: string) => {
+    removeOptimisticRequest(requestId);
+    try {
+      await acceptFollowRequest(userId);
+      setRequestState((prev) => prev.filter((req) => req.id !== requestId));
+    } catch (err) {}
+  };
+  const decline = async (requestId: number, userId: string) => {
+    removeOptimisticRequest(requestId);
+    try {
+      await declineFollowRequest(userId);
+      setRequestState((prev) => prev.filter((req) => req.id !== requestId));
+    } catch (err) {}
+  };
+
+  const [optimisticRequests, removeOptimisticRequest] = useOptimistic(
+    requestState,
+    (state, value: number) => state.filter((req) => req.id !== value)
+  );
   
 
   return (
     <>
-    {requests.map((request)=>(
+    {optimisticRequests.map((request)=>(
 <div className='flex items-center justify-center justify-between'>
             <div className='flex items-center justify-center gap-4' key={request.id}>
             
@@ -28,8 +52,16 @@ const FriendRequestsList = ({requests}:{requests:RequestWithUser[]}) => {
                 : request.sender && request.sender?.username}</span>
             </div>
             <div className='flex gap-3 justify-end'>
+              <form action={()=>accept(request.id,request.sender.clerkId)}>
+                <button>
             <Image src="/accept.png" alt="" height={20} width={20} className=" cursor-pointer"></Image>
+            </button>
+            </form>
+            <form action={()=>decline(request.id,request.sender.clerkId)}>
+                <button>
             <Image src="/reject.png" alt="" height={20} width={20} className="cursor-pointer"></Image>
+            </button>
+            </form>
             </div>
         </div>
     ))
