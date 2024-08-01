@@ -2,13 +2,13 @@
 import Link from 'next/link'
 import React from 'react'
 import Image from 'next/image'
-import MobileMenu from './MobileMenu'
 import { ClerkLoaded, ClerkLoading } from '@clerk/nextjs'
 import { SignedIn, SignedOut,UserButton } from '@clerk/clerk-react'
+//bg-gray-900 will be used for dark mode
 
 const Navbar = () => {
   return (
-    <div className='h-24 flex items-center justify-between'>
+    <div className='h-24 flex items-center justify-between '>
       {/*Left*/}
       <div className='md:hidden lg:block w-[20%]'>
         <Link href="/" className='font-bold text-[25px] text-blue-600'>Socialify</Link>

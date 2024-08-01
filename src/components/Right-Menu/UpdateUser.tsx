@@ -35,7 +35,7 @@ const UpdateUser = ({ user }: { user: User }) => {
             action={(formData) =>
               formAction({ formData, cover: cover?.secure_url || "" })
             }
-            className="px-12 py-8 bg-white rounded-lg shadow-md flex flex-col gap-2 w-full md:w-1/3 xl:w-1/2  relative"
+            className="px-12 py-5 bg-white rounded-lg shadow-md flex flex-col gap-2 w-full md:w-1/3 xl:w-1/2  relative"
           >
             {/* TITLE */}
             <h1>Update Profile</h1>
