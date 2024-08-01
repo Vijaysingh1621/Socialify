@@ -9,7 +9,7 @@ const Homepage = () => {
     <div className="flex gap-6 pt-4">
       <div className="hidden xl:block w-[30%]"><LeftMenu type="home"/></div>
       <div className="w-full lg:w-[70%] xl:w-[50%]">
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col xl:w-[500px]  gap-6">
          <Stories/>
          <AddPost/>
          <Feed/>

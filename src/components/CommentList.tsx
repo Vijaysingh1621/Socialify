@@ -46,7 +46,7 @@ const CommentList = ({
     });
     try {
       const createdComment = await addComment(postId, desc);
-      setCommentState((prev) => [createdComment, ...prev]);
+      setCommentState((prev) => [createdComment!, ...prev]);
     } catch (err) {}
   };
 

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Comments from "./Comment";
 import { Post as PostType, User } from "@prisma/client";
+import PostInfo from "./PostInfo";
 import PostInteraction from "./PostInteraction";
 import { Suspense } from "react";
 
@@ -32,7 +33,7 @@ const Post = ({ post }: { post: FeedPostType }) => {
               : post.user.username}
           </span>
         </div>
-        {userId === post.user.id && <PostInfo postId={post.id} />}
+        {userId === post.user.clerkId && <PostInfo postId={post.id} />}
       </div>
       {/* DESC */}
       <div className="flex flex-col gap-4">
