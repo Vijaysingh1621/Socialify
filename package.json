@@ -11,7 +11,7 @@
   "dependencies": {
     "@clerk/nextjs": "^5.2.6",
     "@prisma/client": "^5.17.0",
-    "babel-plugin-react-compiler": "^0.0.0-experimental-938cd9a-20240601",
+    "babel-plugin-react-compiler": "^0.0.0-experimental-334f00b-20240725",
     "bson": "^6.8.0",
     "mongodb": "^6.8.0",
     "next": "15.0.0-rc.0",

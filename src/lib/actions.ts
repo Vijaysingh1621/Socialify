@@ -207,7 +207,7 @@ export const declineFollowRequest = async (userId: string) => {
   };
 
   
-export const switchLike = async (postId: number) => {
+export const switchLike = async (postId: string) => {
   const { userId } = auth();
 
   if (!userId) throw new Error("User is not authenticated!");
@@ -240,7 +240,7 @@ export const switchLike = async (postId: number) => {
   }
 };
 
-export const addComment = async (postId: number, desc: string) => {
+export const addComment = async (postId: string, desc: string) => {
   const { userId } = auth();
 
   if (!userId) throw new Error("User is not authenticated!");
@@ -263,6 +263,7 @@ export const addComment = async (postId: number, desc: string) => {
     throw new Error("Something went wrong!");
   }
 };
+
 
 
 export const addPost = async (formData: FormData, img: string) => {
@@ -291,7 +292,6 @@ export const addPost = async (formData: FormData, img: string) => {
     });
 
     revalidatePath("/");
-    
   } catch (err) {
     console.log(err);
   }
@@ -341,7 +341,7 @@ export const deletePost = async (postId: number) => {
   try {
     await prisma.post.delete({
       where: {
-        id: postId,
+        id: `${postId}`,
         userId,
       },
     });

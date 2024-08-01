@@ -1,21 +1,24 @@
 import prisma from "@/lib/client";
-import Image from "next/image";
 import CommentList from "./CommentList";
 
-const Comments = async ({postId}:{postId:number}) => {
+interface Props {
+  postId: string;
+}
 
+const Comments = async ({ postId }: Props) => {
   const comments = await prisma.comment.findMany({
-    where:{
-      postId,
+    where: {
+      postId: `${postId}`, //added
     },
-    include:{
-      user:true
-    }
-  })
+    include: {
+      user: true,
+    },
+  });
+
   return (
     <div className="">
       {/* WRITE */}
-      <CommentList comments={comments} postId={postId}/>
+      <CommentList comments={comments} postId={postId} />
     </div>
   );
 };

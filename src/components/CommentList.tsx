@@ -13,7 +13,7 @@ const CommentList = ({
   postId,
 }: {
   comments: CommentWithUser[];
-  postId: number;
+  postId: string;
 }) => {
   const { user } = useUser();
   const [commentState, setCommentState] = useState(comments);
@@ -23,14 +23,15 @@ const CommentList = ({
     if (!user || !desc) return;
 
     addOptimisticComment({
-      id: Math.random(),
+      id: Math.random().toString(), //.toString added
       desc,
       createdAt: new Date(Date.now()),
       updatedAt: new Date(Date.now()),
-      userId: user.clerkId,
-      postId: postId,
+      userId: user.id,
+      postId: `${postId}`, //added
       user: {
-        id: user.clerkId,
+        id: user.id,
+        clerkId:"",
         username: "Sending Please Wait...",
         avatar: user.imageUrl || "/noAvatar.png",
         cover: "",
@@ -46,7 +47,7 @@ const CommentList = ({
     });
     try {
       const createdComment = await addComment(postId, desc);
-      setCommentState((prev) => [createdComment!, ...prev]);
+      setCommentState((prev) => [createdComment, ...prev]);
     } catch (err) {}
   };
 
