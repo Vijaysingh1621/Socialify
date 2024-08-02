@@ -333,7 +333,7 @@ export const addStory = async (img: string) => {
   }
 };
 
-export const deletePost = async (postId: number) => {
+export const deletePost = async (postId: string) => {
   const { userId } = auth();
 
   if (!userId) throw new Error("User is not authenticated!");

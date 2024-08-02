@@ -7,7 +7,7 @@ import prisma from '@/lib/client'
 import UserInfoCardInteraction from './UserInfoCardInteraction'
 import UpdateUser from './UpdateUser'
 
-const UserInfoCard = async({user}:{user?:User}) => {
+const UserInfoCard = async({user}:{user:User}) => {
 
     const createdAtDate = new Date(user.created);
 

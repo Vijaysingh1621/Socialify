@@ -12,14 +12,14 @@ const FriendRequestsList = ({requests}:{requests:RequestWithUser[]}) => {
 
   const [requestState, setRequestState] = useState(requests);
 
-  const accept = async (requestId: number, userId: string) => {
+  const accept = async (requestId: string , userId: string) => {  //request ID
     removeOptimisticRequest(requestId);
     try {
       await acceptFollowRequest(userId);
       setRequestState((prev) => prev.filter((req) => req.id !== requestId));
     } catch (err) {}
   };
-  const decline = async (requestId: number, userId: string) => {
+  const decline = async (requestId: string, userId: string) => {
     removeOptimisticRequest(requestId);
     try {
       await declineFollowRequest(userId);
@@ -29,7 +29,7 @@ const FriendRequestsList = ({requests}:{requests:RequestWithUser[]}) => {
 
   const [optimisticRequests, removeOptimisticRequest] = useOptimistic(
     requestState,
-    (state, value: number) => state.filter((req) => req.id !== value)
+    (state, value: string) => state.filter((req) => req.id !== value)
   );
   
 

@@ -86,9 +86,9 @@ model Follower {
 model FollowRequest {
   id         String   @id @default(cuid()) @map("_id")
   createdAt  DateTime @default(now())
-  sender     User ?  @relation("FollowRequestsSent", fields: [senderId], references: [clerkId], onDelete: Cascade)
+  sender     User   @relation("FollowRequestsSent", fields: [senderId], references: [clerkId], onDelete: Cascade)
   senderId   String
-  receiver   User?    @relation("FollowRequestsReceived", fields: [receiverId], references: [clerkId], onDelete: Cascade)
+  receiver   User   @relation("FollowRequestsReceived", fields: [receiverId], references: [clerkId], onDelete: Cascade)
   receiverId String
 
   @@unique([senderId, receiverId])
