@@ -3,9 +3,9 @@ import React ,{useState}from 'react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 
-const page = () => {
+const Page = () => {
 
-    const [search, setSearch] = useState('')
+  const [search, setSearch] = useState("")
   const router = useRouter()
 
   const handleSearchChange = (e:any) => {
@@ -40,4 +40,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
