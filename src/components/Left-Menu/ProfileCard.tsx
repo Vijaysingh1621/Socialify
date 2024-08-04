@@ -18,7 +18,7 @@ const ProfileCard = async () => {
     },include:{
       _count:{
         select:{
-          followers:true
+          following:true  // following <=> followers
       }
     }
   }});
@@ -35,7 +35,7 @@ const ProfileCard = async () => {
         <div className='h-20 flex flex-col gap-2 items-center'>
             <span className='font-semibold'>{(user.name && user.surname)? user.name+ " "+ user.surname : user.surname}</span>
             <div className='flex items-center gap-4'>
-                <span className='text-xs text-gray-500'>{user._count.followers} Followers</span>
+                <span className='text-xs text-gray-500'>{user._count.following} Followers</span>
             </div>
             <Link href={`/profile/${user.username}`}>
             <button className='bg-blue-500 text-white px-4 py-1 rounded-lg'>My profile</button>

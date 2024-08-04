@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation' // Import from 'next/navigation'
 import { ClerkLoaded, ClerkLoading } from '@clerk/nextjs'
 import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
 
@@ -10,11 +10,11 @@ const Navbar = () => {
   const [search, setSearch] = useState('')
   const router = useRouter()
 
-  const handleSearchChange = (e: any) => {
+  const handleSearchChange = (e:any) => {
     setSearch(e.target.value)
   }
 
-  const handleSearchSubmit = (e: any) => {
+  const handleSearchSubmit = (e:any) => {
     e.preventDefault()
     if (search.trim()) {
       router.push(`/profile/${search.trim()}`)
@@ -22,10 +22,13 @@ const Navbar = () => {
   }
 
   return (
-    <div className='h-24 flex items-center justify-between px-4'>
+    <div className='h-24 flex items-center justify-between'>
       {/* Left */}
-      <div className='md:hidden lg:block w-[20%]'>
-        <Link href="/" className='font-bold text-[25px] text-blue-600'>Socialify</Link>
+      <div className='md:hidden lg:block w-[20%] block flex-row gap-10'>
+        <div className='flex items-center gap-2'>
+          <Image src="/socialifylogo.png" height={25} width={25} alt=""></Image>
+          <Link href="/" className='font-bold text-[25px] text-[#3bacf7]'>Socialify</Link>
+        </div>
       </div>
       {/* Center */}
       <div className='hidden md:flex w-[50%] text-sm items-center justify-between'>
@@ -44,19 +47,21 @@ const Navbar = () => {
             <span>Stories</span>
           </Link>
         </div>
+        <form onSubmit={handleSearchSubmit} className=' xs:block xl:flex p-2 bg-slate-100 items-center rounded-xl '>
+          <input
+            type="text"
+            placeholder='search...'
+            value={search}
+            onChange={handleSearchChange}
+            className='bg-transparent outline-none'
+          />
+          <button type="submit">
+            <Image src="/search.png" alt="search" height={14} width={14} className='mr-4' />
+          </button>
+        </form>
+       
       </div>
-      <form onSubmit={handleSearchSubmit} className='flex items-center bg-slate-100 rounded-xl w-full xs:w-auto xs:flex-grow md:w-1/2lg:w-1/3 min-w-10'>
-        <input
-          type="text"
-          placeholder='search...'
-          value={search}
-          onChange={handleSearchChange}
-          className='bg-transparent outline-none p-2 flex-grow'
-        />
-        <button type="submit" className='p-2'>
-          <Image src="/search.png" alt="search" height={14} width={14} />
-        </button>
-      </form>
+      
       {/* Right */}
       <div className='w-[30%] flex items-center gap-4 xl:gap-8 justify-end'>
         <ClerkLoading>
