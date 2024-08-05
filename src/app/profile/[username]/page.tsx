@@ -1,11 +1,12 @@
 import Feed from '@/components/Feed'
 import LeftMenu from '@/components/Left-Menu/LeftMenu'
 import RightMenu from '@/components/Right-Menu/RightMenu'
-import React from 'react'
+import React, { Suspense } from 'react'
 import Image from 'next/image'
 import prisma from '@/lib/client'
 import { notFound } from 'next/navigation'
 import { auth } from '@clerk/nextjs/server'
+import UserInfoCard from '@/components/Right-Menu/UserInfoCard'
 
 const page = async({params}:{params:{username:string,clerkId:string}}) => {
   const username = params.username;
@@ -64,7 +65,7 @@ if(isBlocked) return notFound();
               <span className='text-sm'>Posts</span>
             </div>
             <div className='flex flex-col items-center'>
-              <span className='font-medium'>{user._count.following}</span>  {/*   there is a chnage*/} 
+              <span className='font-medium'>{user._count.following}</span>  {/*   there is a change*/} 
               <span className='text-sm'>Followers</span>
             </div>
             <div className='flex flex-col items-center'>
@@ -73,6 +74,13 @@ if(isBlocked) return notFound();
             </div>
           </div>
         </div>
+        <div className="xs:block lg:hidden xl:hidden ">
+        <Suspense fallback="loading...">
+        <UserInfoCard user={user}/>
+        </Suspense>
+        </div>
+        
+
        <Feed/>
       </div>
       

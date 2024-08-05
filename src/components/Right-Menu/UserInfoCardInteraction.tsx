@@ -21,7 +21,7 @@ const UserInfoCardInteraction = ({
     });
 
     const follow = async()=>{
-        //switchOptimisticState("follow") removed as it making flikkering
+        switchOptimisticState("follow") //removed as it making flikkering
         try{
             await switchFollow(userId);
             setUserState((prev)=>({...prev,
@@ -32,7 +32,7 @@ const UserInfoCardInteraction = ({
     };
 
     const block =async()=>{
-        //switchOptimisticState("block")
+        switchOptimisticState("block")
         try{
             await switchBlock(userId);
             setUserState((prev)=>({...prev,
